@@ -1,20 +1,22 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Usuwanie Konta i Danych | AlcheMascots: Magic Isle</title>
-  <meta name="description" content="Oficjalna strona żądania usunięcia konta i danych gracza dla gry AlcheMascots: Magic Isle zgodnie z Google Play Data Safety i RODO.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CreatLyre Studio | Wojciech Balon — Developer & Creator of AlcheMascots</title>
+  <meta name="description" content="Official website of CreatLyre and Wojciech Balon - Senior Data & Cloud Engineer, Game Developer and Creator of AlcheMascots: Magic Isle.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Cinzel:wght@700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #090d16;
-      --card-bg: rgba(15, 23, 42, 0.85);
-      --border: rgba(16, 185, 129, 0.25);
-      --accent: #10b981;
-      --accent-hover: #059669;
-      --danger: #e11d48;
-      --danger-hover: #be123c;
-      --text: #f8fafc;
+      --bg-dark: #070b13;
+      --card-bg: rgba(15, 23, 42, 0.75);
+      --card-border: rgba(16, 185, 129, 0.22);
+      --accent-emerald: #10b981;
+      --accent-glow: rgba(16, 185, 129, 0.35);
+      --accent-gold: #f59e0b;
+      --text-main: #f8fafc;
       --text-muted: #94a3b8;
       --text-dim: #64748b;
     }
@@ -22,210 +24,269 @@
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      -webkit-tap-highlight-color: transparent;
     }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background-color: var(--bg);
-      background-image: radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.15), transparent 70%);
-      color: var(--text);
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-dark);
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.18), transparent 60%),
+        radial-gradient(circle at 10% 80%, rgba(245, 158, 11, 0.08), transparent 50%);
+      color: var(--text-main);
       line-height: 1.6;
-      padding: env(safe-area-inset-top, 24px) 16px env(safe-area-inset-bottom, 32px);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      align-items: center;
     }
     .container {
       width: 100%;
-      max-width: 680px;
+      max-width: 960px;
       margin: 0 auto;
+      padding: 40px 20px;
     }
     header {
-      text-align: center;
-      margin-bottom: 24px;
-      padding-top: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 24px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      margin-bottom: 40px;
     }
-    .badge {
-      display: inline-block;
-      padding: 6px 14px;
-      background: rgba(16, 185, 129, 0.15);
-      border: 1px solid var(--border);
-      border-radius: 9999px;
-      font-size: 12px;
-      font-weight: 600;
-      color: #34d399;
-      margin-bottom: 12px;
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: #fff;
+    }
+    .brand-logo {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #10b981, #047857);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      box-shadow: 0 0 15px var(--accent-glow);
+    }
+    .brand-name {
+      font-family: 'Cinzel', serif;
+      font-size: 20px;
+      font-weight: 800;
       letter-spacing: 0.5px;
     }
-    h1 {
-      font-size: 26px;
-      font-weight: 800;
-      color: #ffffff;
-      margin-bottom: 8px;
-    }
-    .lang-switcher {
+    .nav-links {
       display: flex;
-      justify-content: center;
-      gap: 8px;
-      margin-top: 14px;
+      gap: 16px;
     }
-    .lang-btn {
-      min-height: 44px;
-      min-width: 44px;
-      padding: 8px 16px;
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      background: rgba(30, 41, 59, 0.7);
-      color: var(--text);
-      font-size: 13px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.15s ease;
-      touch-action: manipulation;
-    }
-    .lang-btn.active {
-      background: var(--accent);
-      color: #ffffff;
-      border-color: var(--accent);
-    }
-    .card {
-      background: var(--card-bg);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 24px;
-      margin-bottom: 20px;
-      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
-    }
-    h2 {
-      font-size: 18px;
-      font-weight: 700;
-      color: #ffffff;
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    p {
-      font-size: 14px;
+    .nav-links a {
       color: var(--text-muted);
-      margin-bottom: 12px;
-    }
-    ul, ol {
-      margin-left: 20px;
-      margin-bottom: 14px;
-      color: var(--text-muted);
+      text-decoration: none;
       font-size: 14px;
-    }
-    li {
-      margin-bottom: 6px;
-    }
-    .highlight-box {
-      background: rgba(225, 29, 72, 0.1);
-      border: 1px solid rgba(225, 29, 72, 0.3);
-      border-radius: 14px;
-      padding: 14px;
-      margin-top: 14px;
-    }
-    .highlight-box p {
-      color: #fda4af;
-      margin: 0;
-      font-size: 13px;
-    }
-    .steps-list {
-      counter-reset: step-counter;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-    .step-item {
-      position: relative;
-      padding-left: 44px;
-      margin-bottom: 16px;
-    }
-    .step-number {
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      background: rgba(16, 185, 129, 0.2);
-      border: 1px solid var(--accent);
-      color: #34d399;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 800;
-      font-size: 14px;
-    }
-    .form-group {
-      margin-bottom: 16px;
-    }
-    label {
-      display: block;
-      font-size: 13px;
       font-weight: 600;
-      color: var(--text);
-      margin-bottom: 6px;
+      transition: color 0.2s;
     }
-    input[type="email"], textarea {
+    .nav-links a:hover {
+      color: var(--accent-emerald);
+    }
+
+    /* Hero Section */
+    .hero {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 36px;
+      align-items: center;
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--card-border);
+      border-radius: 28px;
+      padding: 36px;
+      margin-bottom: 40px;
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6);
+    }
+    @media (max-width: 680px) {
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding: 28px;
+        gap: 24px;
+      }
+    }
+    .avatar-wrapper {
+      position: relative;
+      margin: 0 auto;
+      width: 210px;
+      height: 210px;
+    }
+    .avatar-img {
       width: 100%;
-      min-height: 48px;
-      padding: 12px 14px;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: 12px;
-      color: #ffffff;
-      font-size: 14px;
-      outline: none;
-      transition: border-color 0.15s ease;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 24px;
+      border: 2px solid var(--accent-emerald);
+      box-shadow: 0 0 25px rgba(16, 185, 129, 0.35);
     }
-    input[type="email"]:focus, textarea:focus {
-      border-color: var(--accent);
+    .hero-content h1 {
+      font-family: 'Cinzel', serif;
+      font-size: 32px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 4px;
     }
-    .submit-btn {
-      width: 100%;
-      min-height: 48px;
-      padding: 12px 24px;
-      border-radius: 14px;
-      border: none;
-      background: var(--danger);
-      color: #ffffff;
+    .hero-subtitle {
       font-size: 15px;
       font-weight: 700;
-      cursor: pointer;
-      transition: all 0.15s ease;
-      touch-action: manipulation;
+      color: var(--accent-emerald);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 14px;
     }
-    .submit-btn:hover {
-      background: var(--danger-hover);
+    .hero-bio {
+      font-size: 15px;
+      color: var(--text-muted);
+      margin-bottom: 20px;
     }
-    .submit-btn:active {
-      transform: scale(0.98);
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
     }
-    .success-message {
-      display: none;
-      background: rgba(16, 185, 129, 0.15);
-      border: 1px solid var(--accent);
-      border-radius: 12px;
-      padding: 14px;
-      color: #6ee7b7;
-      font-size: 14px;
-      margin-top: 14px;
-      text-align: center;
+    .tag {
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 12px;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      border-radius: 9999px;
+      color: #34d399;
     }
-    footer {
-      text-align: center;
-      margin-top: auto;
-      padding-top: 24px;
+
+    /* Game Showcase */
+    .game-card {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.08), rgba(15, 23, 42, 0.85));
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      border-radius: 28px;
+      padding: 36px;
+      margin-bottom: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .game-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 250px;
+      height: 250px;
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.15), transparent 70%);
+      pointer-events: none;
+    }
+    .game-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      border-radius: 9999px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #fbbf24;
+      margin-bottom: 16px;
+    }
+    .game-title {
+      font-family: 'Cinzel', serif;
+      font-size: 28px;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 10px;
+    }
+    .game-desc {
+      color: var(--text-muted);
+      font-size: 15px;
+      margin-bottom: 24px;
+      max-width: 720px;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+    .feature-box {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 16px;
+    }
+    .feature-box h4 {
+      font-size: 15px;
+      color: #fff;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .feature-box p {
+      font-size: 13px;
+      color: var(--text-dim);
+      margin: 0;
+    }
+
+    /* Links Grid */
+    .links-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+    .link-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 20px;
+      text-decoration: none;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      transition: all 0.2s ease;
+    }
+    .link-card:hover {
+      border-color: var(--accent-emerald);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(16, 185, 129, 0.15);
+    }
+    .link-icon {
+      font-size: 28px;
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .link-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .link-subtitle {
       font-size: 12px;
       color: var(--text-dim);
     }
+
+    /* Footer */
+    footer {
+      margin-top: auto;
+      text-align: center;
+      padding: 24px 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 13px;
+      color: var(--text-dim);
+    }
     footer a {
-      color: var(--accent);
+      color: var(--accent-emerald);
       text-decoration: none;
     }
   </style>
@@ -233,176 +294,100 @@
 <body>
   <div class="container">
     <header>
-      <span class="badge">Google Play Data Safety & GDPR / RODO</span>
-      <h1 id="title">Usuwanie Konta i Danych Gracza</h1>
-      <p id="app-name">AlcheMascots: Magic Isle (com.alchemascots.magicisle)</p>
-      <div class="lang-switcher">
-        <button type="button" class="lang-btn active" id="btn-pl" onclick="setLanguage('pl')">Polski</button>
-        <button type="button" class="lang-btn" id="btn-en" onclick="setLanguage('en')">English</button>
-      </div>
+      <a href="#" class="brand">
+        <div class="brand-logo">🔮</div>
+        <div class="brand-name">CreatLyre Studio</div>
+      </a>
+      <nav class="nav-links">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms</a>
+        <a href="account-deletion.html">Data Safety</a>
+      </nav>
     </header>
 
-    <!-- SEKCYJA 1: Zakres usuwanych danych -->
-    <div class="card">
-      <h2 id="scope-heading">🛡️ Zakres i Skutki Usunięcia Danych</h2>
-      <p id="scope-intro">Złożenie żądania usunięcia konta skutkuje <strong>nieodwracalnym, kaskadowym skasowaniem wszystkich powiązanych danych</strong> z naszych serwerów bazodanowych:</p>
-      <ul id="scope-list">
-        <li><strong>Zapis gry w chmurze (`player_saves`):</strong> Cały postęp, odblokowane maskotki, poziomy kociołka, odrodzenia, nasiona i esencja.</li>
-        <li><strong>Profil tożsamości (`auth.users`):</strong> Identyfikator konta UUID, adres e-mail, dane Google OAuth oraz tokeny sesyjne.</li>
-        <li><strong>Telemetria gry (`player_telemetry_summaries`):</strong> Zbiorcze statystyki sesji i historia działań.</li>
-        <li><strong>Portfel i transakcje IAP (`iap_wallets`, `iap_purchase_ledger`):</strong> Saldo Złotych Żołędzi oraz zapisy transakcji mikropłatności.</li>
-      </ul>
-      <div class="highlight-box">
-        <p id="scope-warning">⚠️ <strong>Ostrzeżenie:</strong> Usunięcie konta jest natychmiastowe i ostateczne. Odzyskanie postępu alchemicznego po usunięciu konta jest technicznie niemożliwe.</p>
+    <!-- Developer Profile Section -->
+    <section class="hero">
+      <div class="avatar-wrapper">
+        <img src="wojciech-balon.jpg" alt="Wojciech Balon" class="avatar-img">
       </div>
-    </div>
-
-    <!-- SEKCYJA 2: Metoda 1 - W aplikacji mobilnej -->
-    <div class="card">
-      <h2 id="inapp-heading">📱 Metoda 1: Usunięcie Konta w Aplikacji Mobilnej (Najszybsza)</h2>
-      <p id="inapp-desc">Jeśli masz zainstalowaną grę na smartfonie, możesz usunąć konto samodzielnie w kilka sekund:</p>
-      <ol class="steps-list" id="inapp-steps">
-        <li class="step-item">
-          <div class="step-number">1</div>
-          <strong>Otwórz Ustawienia:</strong> W prawym górnym rogu ekranu gry stuknij ikonę zębatki ⚙️.
-        </li>
-        <li class="step-item">
-          <div class="step-number">2</div>
-          <strong>Przejdź do zakładki Dane:</strong> Wybierz sekcję <em>Zarządzanie Danymi i Zgodność</em>.
-        </li>
-        <li class="step-item">
-          <div class="step-number">3</div>
-          <strong>Potwierdź usunięcie:</strong> Stuknij przycisk <em>Usuń konto i dane w chmurze (RODO)</em>, a następnie zatwierdź czerwoną ikoną kosza.
-        </li>
-      </ol>
-    </div>
-
-    <!-- SEKCYJA 3: Metoda 2 - Formularz WWW pod Google Play Data Safety -->
-    <div class="card">
-      <h2 id="web-heading">🌐 Metoda 2: Zgłoszenie Żądania przez Formularz WWW</h2>
-      <p id="web-desc">Jeśli odinstalowałeś już grę ze smartfona lub nie masz do niej dostępu, podaj adres e-mail użyty podczas logowania przez Google Sign-In:</p>
-
-      <form id="deletion-form" onsubmit="handleFormSubmit(event)">
-        <div class="form-group">
-          <label for="player-email" id="label-email">Adres E-mail Konta Google Gracza:</label>
-          <input type="email" id="player-email" name="email" required placeholder="np. alchemik@gmail.com" autocomplete="email">
+      <div class="hero-content">
+        <div class="hero-subtitle">Independent Game Creator & Cloud Engineer</div>
+        <h1>Wojciech Balon</h1>
+        <p class="hero-bio">
+          Lead Developer and Architect behind <strong>AlcheMascots: Magic Isle</strong>. Senior Data & Cloud Systems Engineer with a deep passion for 3D graphics, procedural simulation, real-time gaming architectures, and clean mobile user experiences.
+        </p>
+        <div class="hero-tags">
+          <span class="tag">🎮 Game Architecture</span>
+          <span class="tag">☁️ Cloud & Distributed Systems</span>
+          <span class="tag">🧪 Supabase & Realtime</span>
+          <span class="tag">📱 Mobile First (Capacitor/React)</span>
+          <span class="tag">🇵🇱 Poland, EU</span>
         </div>
-        <div class="form-group">
-          <label for="player-notes" id="label-notes">Dodatkowe uwagi (opcjonalnie):</label>
-          <textarea id="player-notes" name="notes" rows="2" placeholder="Opcjonalny identyfikator gracza lub powód"></textarea>
-        </div>
-        <button type="submit" class="submit-btn" id="submit-btn">Złóż Żądanie Usunięcia Konta i Danych</button>
-      </form>
-
-      <div class="success-message" id="success-msg">
-        ✔ Twoje żądanie usunięcia konta zostało zarejestrowane. Na wskazany adres e-mail zostanie przesłane potwierdzenie realizacji procedury w ciągu 48 godzin roboczych.
       </div>
-    </div>
+    </section>
 
-    <footer>
-      <p>&copy; 2026 AlcheMascots: Magic Isle. Wszelkie prawa zastrzeżone.</p>
-      <p>Kontakt z Inspektorem Ochrony Danych: <a href="mailto:privacy@alchemascots.com">privacy@alchemascots.com</a></p>
-    </footer>
+    <!-- Game Showcase Section -->
+    <section class="game-card">
+      <div class="game-badge">🌟 Flagship Mobile Title</div>
+      <h2 class="game-title">AlcheMascots: Magic Isle</h2>
+      <p class="game-desc">
+        A cozy, tactile alchemical smartphone game designed from the ground up for one-thumb mobile gameplay. Discover 180+ unique AlcheMascots, master mystical cauldron brews, cultivate enchanted garden plots, and unravel the secrets of the Magic Isle.
+      </p>
+      
+      <div class="features-grid">
+        <div class="feature-box">
+          <h4>📱 Smartphone Only</h4>
+          <p>Ergonomic portrait view, zero keyboard clutter, 44×44px touch targets, dynamic haptic feedback.</p>
+        </div>
+        <div class="feature-box">
+          <h4>🌿 Offline First & Cloud</h4>
+          <p>Full offline playability with secure Supabase cloud sync and authoritative server clocks.</p>
+        </div>
+        <div class="feature-box">
+          <h4>🛡️ Store Compliant</h4>
+          <p>Built with privacy-by-design, transparent GDPR data controls, and seamless Google Play IAP.</p>
+        </div>
+      </div>
+
+      <!-- Compliance & Resource Links -->
+      <div class="links-grid">
+        <a href="privacy.html" class="link-card">
+          <div class="link-icon">📜</div>
+          <div>
+            <div class="link-title">Privacy Policy</div>
+            <div class="link-subtitle">Official player data transparency & GDPR</div>
+          </div>
+        </a>
+
+        <a href="terms.html" class="link-card">
+          <div class="link-icon">⚖️</div>
+          <div>
+            <div class="link-title">Terms of Service</div>
+            <div class="link-subtitle">Game licensing & in-app purchases guidelines</div>
+          </div>
+        </a>
+
+        <a href="account-deletion.html" class="link-card">
+          <div class="link-icon">🛡️</div>
+          <div>
+            <div class="link-title">Data Safety & Deletion</div>
+            <div class="link-subtitle">Self-service account deletion & GDPR purge</div>
+          </div>
+        </a>
+
+        <a href="https://github.com/creatlyre" class="link-card" target="_blank" rel="noopener">
+          <div class="link-icon">💻</div>
+          <div>
+            <div class="link-title">GitHub Profile</div>
+            <div class="link-subtitle">github.com/creatlyre</div>
+          </div>
+        </a>
+      </div>
+    </section>
   </div>
 
-  <script>
-    const content = {
-      pl: {
-        title: "Usuwanie Konta i Danych Gracza",
-        appName: "AlcheMascots: Magic Isle (com.alchemascots.magicisle)",
-        scopeHeading: "🛡️ Zakres i Skutki Usunięcia Danych",
-        scopeIntro: "Złożenie żądania usunięcia konta skutkuje nieodwracalnym, kaskadowym skasowaniem wszystkich powiązanych danych z naszych serwerów bazodanowych:",
-        scopeList: [
-          "<strong>Zapis gry w chmurze (`player_saves`):</strong> Cały postęp, odblokowane maskotki, poziomy kociołka, odrodzenia, nasiona i esencja.",
-          "<strong>Profil tożsamości (`auth.users`):</strong> Identyfikator konta UUID, adres e-mail, dane Google OAuth oraz tokeny sesyjne.",
-          "<strong>Telemetria gry (`player_telemetry_summaries`):</strong> Zbiorcze statystyki sesji i historia działań.",
-          "<strong>Portfel i transakcje IAP (`iap_wallets`, `iap_purchase_ledger`):</strong> Saldo Złotych Żołędzi oraz zapisy transakcji mikropłatności."
-        ],
-        scopeWarning: "⚠️ <strong>Ostrzeżenie:</strong> Usunięcie konta jest natychmiastowe i ostateczne. Odzyskanie postępu alchemicznego po usunięciu konta jest technicznie niemożliwe.",
-        inAppHeading: "📱 Metoda 1: Usunięcie Konta w Aplikacji Mobilnej (Najszybsza)",
-        inAppDesc: "Jeśli masz zainstalowaną grę na smartfonie, możesz usunąć konto samodzielnie w kilka sekund:",
-        inAppSteps: [
-          "<strong>Otwórz Ustawienia:</strong> W prawym górnym rogu ekranu gry stuknij ikonę zębatki ⚙️.",
-          "<strong>Przejdź do zakładki Dane:</strong> Wybierz sekcję <em>Zarządzanie Danymi i Zgodność</em>.",
-          "<strong>Potwierdź usunięcie:</strong> Stuknij przycisk <em>Usuń konto i dane w chmurze (RODO)</em>, a następnie zatwierdź czerwoną ikoną kosza."
-        ],
-        webHeading: "🌐 Metoda 2: Zgłoszenie Żądania przez Formularz WWW",
-        webDesc: "Jeśli odinstalowałeś już grę ze smartfona lub nie masz do niej dostępu, podaj adres e-mail użyty podczas logowania przez Google Sign-In:",
-        labelEmail: "Adres E-mail Konta Google Gracza:",
-        labelNotes: "Dodatkowe uwagi (opcjonalnie):",
-        submitBtn: "Złóż Żądanie Usunięcia Konta i Danych",
-        successMsg: "✔ Twoje żądanie usunięcia konta zostało zarejestrowane. Na wskazany adres e-mail zostanie przesłane potwierdzenie realizacji procedury w ciągu 48 godzin roboczych."
-      },
-      en: {
-        title: "Account & Player Data Deletion Request",
-        appName: "AlcheMascots: Magic Isle (com.alchemascots.magicisle)",
-        scopeHeading: "🛡️ Scope and Effect of Account Deletion",
-        scopeIntro: "Submitting an account deletion request will trigger an irreversible, cascading purge of all associated records across our database infrastructure:",
-        scopeList: [
-          "<strong>Cloud Game Save (`player_saves`):</strong> Complete gameplay progress, unlocked mascots, cauldron levels, rebirths, seeds, and essence.",
-          "<strong>Authentication Profile (`auth.users`):</strong> Account UUID, email address, Google OAuth linkage, and session tokens.",
-          "<strong>Player Telemetry (`player_telemetry_summaries`):</strong> Aggregate gameplay session metrics and action logs.",
-          "<strong>IAP Ledger & Wallet (`iap_wallets`, `iap_purchase_ledger`):</strong> Golden Acorn balance and in-app purchase records."
-        ],
-        scopeWarning: "⚠️ <strong>Warning:</strong> Account deletion is immediate and permanent. Reversing this action or restoring your game progress is technically impossible.",
-        inAppHeading: "📱 Method 1: Delete Directly In-App (Fastest)",
-        inAppDesc: "If you have the game installed on your mobile device, you can delete your account in seconds:",
-        inAppSteps: [
-          "<strong>Open Settings:</strong> Tap the Gear ⚙️ icon in the top right corner of the screen.",
-          "<strong>Go to Data Tab:</strong> Scroll to the <em>Data Management & Compliance</em> section.",
-          "<strong>Confirm Deletion:</strong> Tap <em>Delete Account & Cloud Data (GDPR)</em>, then confirm with the red Trash button."
-        ],
-        webHeading: "🌐 Method 2: Submit Web Deletion Request",
-        webDesc: "If you uninstalled the game or no longer have device access, enter the Google Account email associated with your player profile:",
-        labelEmail: "Player Google Account Email:",
-        labelNotes: "Additional Notes (optional):",
-        submitBtn: "Submit Account & Data Deletion Request",
-        successMsg: "✔ Your account deletion request has been registered. A confirmation will be sent to your email address within 48 business hours."
-      }
-    };
-
-    function setLanguage(lang) {
-      document.documentElement.lang = lang;
-      document.getElementById('btn-pl').classList.toggle('active', lang === 'pl');
-      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-
-      const t = content[lang];
-      document.getElementById('title').textContent = t.title;
-      document.getElementById('app-name').textContent = t.appName;
-      document.getElementById('scope-heading').innerHTML = t.scopeHeading;
-      document.getElementById('scope-intro').innerHTML = t.scopeIntro;
-      
-      const scopeUl = document.getElementById('scope-list');
-      scopeUl.innerHTML = t.scopeList.map(item => `<li>${item}</li>`).join('');
-      
-      document.getElementById('scope-warning').innerHTML = t.scopeWarning;
-      document.getElementById('inapp-heading').innerHTML = t.inAppHeading;
-      document.getElementById('inapp-desc').textContent = t.inAppDesc;
-
-      const inAppOl = document.getElementById('inapp-steps');
-      inAppOl.innerHTML = t.inAppSteps.map((item, idx) => `
-        <li class="step-item">
-          <div class="step-number">${idx + 1}</div>
-          ${item}
-        </li>
-      `).join('');
-
-      document.getElementById('web-heading').innerHTML = t.webHeading;
-      document.getElementById('web-desc').textContent = t.webDesc;
-      document.getElementById('label-email').textContent = t.labelEmail;
-      document.getElementById('label-notes').textContent = t.labelNotes;
-      document.getElementById('submit-btn').textContent = t.submitBtn;
-      document.getElementById('success-msg').textContent = t.successMsg;
-    }
-
-    function handleFormSubmit(e) {
-      e.preventDefault();
-      const email = document.getElementById('player-email').value;
-      if (!email) return;
-
-      document.getElementById('deletion-form').style.display = 'none';
-      document.getElementById('success-msg').style.display = 'block';
-    }
-  </script>
+  <footer>
+    &copy; 2026 CreatLyre / Wojciech Balon. All rights reserved. &bull; Contact: <a href="mailto:wojbal3@gmail.com">wojbal3@gmail.com</a>
+  </footer>
 </body>
 </html>
