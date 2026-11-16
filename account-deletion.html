@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Usuwanie Konta i Danych | AlcheMascots: Magic Isle</title>
+  <meta name="description" content="Oficjalna strona żądania usunięcia konta i danych gracza dla gry AlcheMascots: Magic Isle zgodnie z Google Play Data Safety i RODO.">
+  <style>
+    :root {
+      --bg: #090d16;
+      --card-bg: rgba(15, 23, 42, 0.85);
+      --border: rgba(16, 185, 129, 0.25);
+      --accent: #10b981;
+      --accent-hover: #059669;
+      --danger: #e11d48;
+      --danger-hover: #be123c;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg);
+      background-image: radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.15), transparent 70%);
+      color: var(--text);
+      line-height: 1.6;
+      padding: env(safe-area-inset-top, 24px) 16px env(safe-area-inset-bottom, 32px);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .container {
+      width: 100%;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 24px;
+      padding-top: 12px;
+    }
+    .badge {
+      display: inline-block;
+      padding: 6px 14px;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid var(--border);
+      border-radius: 9999px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #34d399;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+    }
+    h1 {
+      font-size: 26px;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 8px;
+    }
+    .lang-switcher {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 14px;
+    }
+    .lang-btn {
+      min-height: 44px;
+      min-width: 44px;
+      padding: 8px 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: rgba(30, 41, 59, 0.7);
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      touch-action: manipulation;
+    }
+    .lang-btn.active {
+      background: var(--accent);
+      color: #ffffff;
+      border-color: var(--accent);
+    }
+    .card {
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+    }
+    h2 {
+      font-size: 18px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    p {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+    ul, ol {
+      margin-left: 20px;
+      margin-bottom: 14px;
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+    li {
+      margin-bottom: 6px;
+    }
+    .highlight-box {
+      background: rgba(225, 29, 72, 0.1);
+      border: 1px solid rgba(225, 29, 72, 0.3);
+      border-radius: 14px;
+      padding: 14px;
+      margin-top: 14px;
+    }
+    .highlight-box p {
+      color: #fda4af;
+      margin: 0;
+      font-size: 13px;
+    }
+    .steps-list {
+      counter-reset: step-counter;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .step-item {
+      position: relative;
+      padding-left: 44px;
+      margin-bottom: 16px;
+    }
+    .step-number {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(16, 185, 129, 0.2);
+      border: 1px solid var(--accent);
+      color: #34d399;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 14px;
+    }
+    .form-group {
+      margin-bottom: 16px;
+    }
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    input[type="email"], textarea {
+      width: 100%;
+      min-height: 48px;
+      padding: 12px 14px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 12px;
+      color: #ffffff;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.15s ease;
+    }
+    input[type="email"]:focus, textarea:focus {
+      border-color: var(--accent);
+    }
+    .submit-btn {
+      width: 100%;
+      min-height: 48px;
+      padding: 12px 24px;
+      border-radius: 14px;
+      border: none;
+      background: var(--danger);
+      color: #ffffff;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      touch-action: manipulation;
+    }
+    .submit-btn:hover {
+      background: var(--danger-hover);
+    }
+    .submit-btn:active {
+      transform: scale(0.98);
+    }
+    .success-message {
+      display: none;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid var(--accent);
+      border-radius: 12px;
+      padding: 14px;
+      color: #6ee7b7;
+      font-size: 14px;
+      margin-top: 14px;
+      text-align: center;
+    }
+    footer {
+      text-align: center;
+      margin-top: auto;
+      padding-top: 24px;
+      font-size: 12px;
+      color: var(--text-dim);
+    }
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <span class="badge">Google Play Data Safety & GDPR / RODO</span>
+      <h1 id="title">Usuwanie Konta i Danych Gracza</h1>
+      <p id="app-name">AlcheMascots: Magic Isle (com.alchemascots.magicisle)</p>
+      <div class="lang-switcher">
+        <button type="button" class="lang-btn active" id="btn-pl" onclick="setLanguage('pl')">Polski</button>
+        <button type="button" class="lang-btn" id="btn-en" onclick="setLanguage('en')">English</button>
+      </div>
+    </header>
+
+    <!-- SEKCYJA 1: Zakres usuwanych danych -->
+    <div class="card">
+      <h2 id="scope-heading">🛡️ Zakres i Skutki Usunięcia Danych</h2>
+      <p id="scope-intro">Złożenie żądania usunięcia konta skutkuje <strong>nieodwracalnym, kaskadowym skasowaniem wszystkich powiązanych danych</strong> z naszych serwerów bazodanowych:</p>
+      <ul id="scope-list">
+        <li><strong>Zapis gry w chmurze (`player_saves`):</strong> Cały postęp, odblokowane maskotki, poziomy kociołka, odrodzenia, nasiona i esencja.</li>
+        <li><strong>Profil tożsamości (`auth.users`):</strong> Identyfikator konta UUID, adres e-mail, dane Google OAuth oraz tokeny sesyjne.</li>
+        <li><strong>Telemetria gry (`player_telemetry_summaries`):</strong> Zbiorcze statystyki sesji i historia działań.</li>
+        <li><strong>Portfel i transakcje IAP (`iap_wallets`, `iap_purchase_ledger`):</strong> Saldo Złotych Żołędzi oraz zapisy transakcji mikropłatności.</li>
+      </ul>
+      <div class="highlight-box">
+        <p id="scope-warning">⚠️ <strong>Ostrzeżenie:</strong> Usunięcie konta jest natychmiastowe i ostateczne. Odzyskanie postępu alchemicznego po usunięciu konta jest technicznie niemożliwe.</p>
+      </div>
+    </div>
+
+    <!-- SEKCYJA 2: Metoda 1 - W aplikacji mobilnej -->
+    <div class="card">
+      <h2 id="inapp-heading">📱 Metoda 1: Usunięcie Konta w Aplikacji Mobilnej (Najszybsza)</h2>
+      <p id="inapp-desc">Jeśli masz zainstalowaną grę na smartfonie, możesz usunąć konto samodzielnie w kilka sekund:</p>
+      <ol class="steps-list" id="inapp-steps">
+        <li class="step-item">
+          <div class="step-number">1</div>
+          <strong>Otwórz Ustawienia:</strong> W prawym górnym rogu ekranu gry stuknij ikonę zębatki ⚙️.
+        </li>
+        <li class="step-item">
+          <div class="step-number">2</div>
+          <strong>Przejdź do zakładki Dane:</strong> Wybierz sekcję <em>Zarządzanie Danymi i Zgodność</em>.
+        </li>
+        <li class="step-item">
+          <div class="step-number">3</div>
+          <strong>Potwierdź usunięcie:</strong> Stuknij przycisk <em>Usuń konto i dane w chmurze (RODO)</em>, a następnie zatwierdź czerwoną ikoną kosza.
+        </li>
+      </ol>
+    </div>
+
+    <!-- SEKCYJA 3: Metoda 2 - Formularz WWW pod Google Play Data Safety -->
+    <div class="card">
+      <h2 id="web-heading">🌐 Metoda 2: Zgłoszenie Żądania przez Formularz WWW</h2>
+      <p id="web-desc">Jeśli odinstalowałeś już grę ze smartfona lub nie masz do niej dostępu, podaj adres e-mail użyty podczas logowania przez Google Sign-In:</p>
+
+      <form id="deletion-form" onsubmit="handleFormSubmit(event)">
+        <div class="form-group">
+          <label for="player-email" id="label-email">Adres E-mail Konta Google Gracza:</label>
+          <input type="email" id="player-email" name="email" required placeholder="np. alchemik@gmail.com" autocomplete="email">
+        </div>
+        <div class="form-group">
+          <label for="player-notes" id="label-notes">Dodatkowe uwagi (opcjonalnie):</label>
+          <textarea id="player-notes" name="notes" rows="2" placeholder="Opcjonalny identyfikator gracza lub powód"></textarea>
+        </div>
+        <button type="submit" class="submit-btn" id="submit-btn">Złóż Żądanie Usunięcia Konta i Danych</button>
+      </form>
+
+      <div class="success-message" id="success-msg">
+        ✔ Twoje żądanie usunięcia konta zostało zarejestrowane. Na wskazany adres e-mail zostanie przesłane potwierdzenie realizacji procedury w ciągu 48 godzin roboczych.
+      </div>
+    </div>
+
+    <footer>
+      <p>&copy; 2026 AlcheMascots: Magic Isle. Wszelkie prawa zastrzeżone.</p>
+      <p>Kontakt z Inspektorem Ochrony Danych: <a href="mailto:privacy@alchemascots.com">privacy@alchemascots.com</a></p>
+    </footer>
+  </div>
+
+  <script>
+    const content = {
+      pl: {
+        title: "Usuwanie Konta i Danych Gracza",
+        appName: "AlcheMascots: Magic Isle (com.alchemascots.magicisle)",
+        scopeHeading: "🛡️ Zakres i Skutki Usunięcia Danych",
+        scopeIntro: "Złożenie żądania usunięcia konta skutkuje nieodwracalnym, kaskadowym skasowaniem wszystkich powiązanych danych z naszych serwerów bazodanowych:",
+        scopeList: [
+          "<strong>Zapis gry w chmurze (`player_saves`):</strong> Cały postęp, odblokowane maskotki, poziomy kociołka, odrodzenia, nasiona i esencja.",
+          "<strong>Profil tożsamości (`auth.users`):</strong> Identyfikator konta UUID, adres e-mail, dane Google OAuth oraz tokeny sesyjne.",
+          "<strong>Telemetria gry (`player_telemetry_summaries`):</strong> Zbiorcze statystyki sesji i historia działań.",
+          "<strong>Portfel i transakcje IAP (`iap_wallets`, `iap_purchase_ledger`):</strong> Saldo Złotych Żołędzi oraz zapisy transakcji mikropłatności."
+        ],
+        scopeWarning: "⚠️ <strong>Ostrzeżenie:</strong> Usunięcie konta jest natychmiastowe i ostateczne. Odzyskanie postępu alchemicznego po usunięciu konta jest technicznie niemożliwe.",
+        inAppHeading: "📱 Metoda 1: Usunięcie Konta w Aplikacji Mobilnej (Najszybsza)",
+        inAppDesc: "Jeśli masz zainstalowaną grę na smartfonie, możesz usunąć konto samodzielnie w kilka sekund:",
+        inAppSteps: [
+          "<strong>Otwórz Ustawienia:</strong> W prawym górnym rogu ekranu gry stuknij ikonę zębatki ⚙️.",
+          "<strong>Przejdź do zakładki Dane:</strong> Wybierz sekcję <em>Zarządzanie Danymi i Zgodność</em>.",
+          "<strong>Potwierdź usunięcie:</strong> Stuknij przycisk <em>Usuń konto i dane w chmurze (RODO)</em>, a następnie zatwierdź czerwoną ikoną kosza."
+        ],
+        webHeading: "🌐 Metoda 2: Zgłoszenie Żądania przez Formularz WWW",
+        webDesc: "Jeśli odinstalowałeś już grę ze smartfona lub nie masz do niej dostępu, podaj adres e-mail użyty podczas logowania przez Google Sign-In:",
+        labelEmail: "Adres E-mail Konta Google Gracza:",
+        labelNotes: "Dodatkowe uwagi (opcjonalnie):",
+        submitBtn: "Złóż Żądanie Usunięcia Konta i Danych",
+        successMsg: "✔ Twoje żądanie usunięcia konta zostało zarejestrowane. Na wskazany adres e-mail zostanie przesłane potwierdzenie realizacji procedury w ciągu 48 godzin roboczych."
+      },
+      en: {
+        title: "Account & Player Data Deletion Request",
+        appName: "AlcheMascots: Magic Isle (com.alchemascots.magicisle)",
+        scopeHeading: "🛡️ Scope and Effect of Account Deletion",
+        scopeIntro: "Submitting an account deletion request will trigger an irreversible, cascading purge of all associated records across our database infrastructure:",
+        scopeList: [
+          "<strong>Cloud Game Save (`player_saves`):</strong> Complete gameplay progress, unlocked mascots, cauldron levels, rebirths, seeds, and essence.",
+          "<strong>Authentication Profile (`auth.users`):</strong> Account UUID, email address, Google OAuth linkage, and session tokens.",
+          "<strong>Player Telemetry (`player_telemetry_summaries`):</strong> Aggregate gameplay session metrics and action logs.",
+          "<strong>IAP Ledger & Wallet (`iap_wallets`, `iap_purchase_ledger`):</strong> Golden Acorn balance and in-app purchase records."
+        ],
+        scopeWarning: "⚠️ <strong>Warning:</strong> Account deletion is immediate and permanent. Reversing this action or restoring your game progress is technically impossible.",
+        inAppHeading: "📱 Method 1: Delete Directly In-App (Fastest)",
+        inAppDesc: "If you have the game installed on your mobile device, you can delete your account in seconds:",
+        inAppSteps: [
+          "<strong>Open Settings:</strong> Tap the Gear ⚙️ icon in the top right corner of the screen.",
+          "<strong>Go to Data Tab:</strong> Scroll to the <em>Data Management & Compliance</em> section.",
+          "<strong>Confirm Deletion:</strong> Tap <em>Delete Account & Cloud Data (GDPR)</em>, then confirm with the red Trash button."
+        ],
+        webHeading: "🌐 Method 2: Submit Web Deletion Request",
+        webDesc: "If you uninstalled the game or no longer have device access, enter the Google Account email associated with your player profile:",
+        labelEmail: "Player Google Account Email:",
+        labelNotes: "Additional Notes (optional):",
+        submitBtn: "Submit Account & Data Deletion Request",
+        successMsg: "✔ Your account deletion request has been registered. A confirmation will be sent to your email address within 48 business hours."
+      }
+    };
+
+    function setLanguage(lang) {
+      document.documentElement.lang = lang;
+      document.getElementById('btn-pl').classList.toggle('active', lang === 'pl');
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+
+      const t = content[lang];
+      document.getElementById('title').textContent = t.title;
+      document.getElementById('app-name').textContent = t.appName;
+      document.getElementById('scope-heading').innerHTML = t.scopeHeading;
+      document.getElementById('scope-intro').innerHTML = t.scopeIntro;
+      
+      const scopeUl = document.getElementById('scope-list');
+      scopeUl.innerHTML = t.scopeList.map(item => `<li>${item}</li>`).join('');
+      
+      document.getElementById('scope-warning').innerHTML = t.scopeWarning;
+      document.getElementById('inapp-heading').innerHTML = t.inAppHeading;
+      document.getElementById('inapp-desc').textContent = t.inAppDesc;
+
+      const inAppOl = document.getElementById('inapp-steps');
+      inAppOl.innerHTML = t.inAppSteps.map((item, idx) => `
+        <li class="step-item">
+          <div class="step-number">${idx + 1}</div>
+          ${item}
+        </li>
+      `).join('');
+
+      document.getElementById('web-heading').innerHTML = t.webHeading;
+      document.getElementById('web-desc').textContent = t.webDesc;
+      document.getElementById('label-email').textContent = t.labelEmail;
+      document.getElementById('label-notes').textContent = t.labelNotes;
+      document.getElementById('submit-btn').textContent = t.submitBtn;
+      document.getElementById('success-msg').textContent = t.successMsg;
+    }
+
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      const email = document.getElementById('player-email').value;
+      if (!email) return;
+
+      document.getElementById('deletion-form').style.display = 'none';
+      document.getElementById('success-msg').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
